@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- === SEO & AI agents === -->
-    <title>Neuvostoautojen asiantuntija | Restaurointi ja varaosat</title>
-    <meta name="description" content="Yli 30 vuoden kokemus Neuvostoliiton autojen restauroinnista. GAZ, VAZ, Moskvich, Zaporozhets, UAZ. Varaosat, tekniset neuvot, kenttädiagnostiikka. Suomi ja Eurooppa.">
-    <meta name="keywords" content="neuvostoautot, restaurointi, varaosat, GAZ, VAZ, Moskvich, Zaporozhets, UAZ, Suomi">
-    <link rel="canonical" href="https://your-github-username.github.io/repo-name/">
+    <title>X-CCCP | EX-USSR — Technical history artifacts</title>
+    <meta name="description" content="X-CCCP / EX-USSR — artifacts of the technical history of the former USSR. Restoration, spare parts, consulting. Mikkeli, Finland.">
+    <meta name="keywords" content="X-CCCP, EX-USSR, oldtimers, restoration, spare parts, varaosat, entisöintti, Mikkeli, Finland, Moskvich, Moskvitsh, Izh, GAZ, VAZ, UAZ">
+    <link rel="canonical" href="https://8132424-eng.github.io/x-cccp/">
 
     <!-- Open Graph (social media) -->
-    <meta property="og:title" content="Neuvostoautojen asiantuntija">
-    <meta property="og:description" content="Neuvostoliiton autojen restaurointi +30 vuotta. Varaosat ja tekniset neuvot.">
+    <meta property="og:title" content="X-CCCP | EX-USSR">
+    <meta property="og:description" content="Artifacts of the technical history of the former USSR. Restoration, spare parts, consulting.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-github-username.github.io/repo-name/">
-    <meta property="og:image" content="https://your-github-username.github.io/repo-name/logo-sssr.jpg">
+    <meta property="og:url" content="https://8132424-eng.github.io/x-cccp/">
+    <meta property="og:image" content="https://your-github-username.github.io/repo-name/logo.jpg">
 
     <!-- AI agent structured data (JSON-LD) -->
     <script type="application/ld+json">
@@ -23,12 +23,17 @@
             "@context": "https://schema.org",
             "@type": "Person",
             "name": "Your Name",
-            "jobTitle": "Neuvostoautojen restauroinnin asiantuntija",
-            "url": "https://your-github-username.github.io/repo-name/",
-            "knowsAbout": ["Neuvostoliiton autot", "Restaurointi", "Varaosat", "GAZ", "VAZ", "Moskvich", "Zaporozhets", "UAZ"],
+            "jobTitle": "Oldtimer enthusiast and certified engineer",
+            "url": "https://8132424-eng.github.io/x-cccp/",
+            "knowsAbout": ["USSR vehicles", "NL ajoneuvot", "NL maatalouskoneet", "NL traktorit", "Restoration", "Entisöinti", "Spare parts", "Varaosat", "GAZ", "VAZ", "Moskvich", "Moskvitsh", "Izh", "Zaporozhets", "UAZ", "Technical history"],
             "address": {
                 "@type": "PostalAddress",
+                "addressLocality": "Mikkeli",
                 "addressCountry": "Finland"
+            },
+            "memberOf": {
+                "@type": "Organization",
+                "name": "Mikkelin Mobilistit r.y."
             }
         }
     </script>
@@ -42,7 +47,6 @@
         }
 
         :root {
-            /* Polite deep-red, closer to pure red — not brown */
             --accent: #c1121f;
             --accent-dark: #8a0e18;
             --accent-soft: rgba(193, 18, 31, 0.08);
@@ -58,7 +62,6 @@
             margin: 0 auto;
         }
 
-        /* Red stripe — flag reference, now truly red */
         .red-stripe {
             width: 100%;
             height: 6px;
@@ -90,6 +93,7 @@
             font-size: 0.9rem;
             color: #555;
             margin-top: -5px;
+            letter-spacing: 2px;
         }
 
         /* Navigation */
@@ -162,11 +166,6 @@
             margin-bottom: 16px;
             color: #222;
         }
-        .page h2 small {
-            font-size: 1rem;
-            color: #666;
-            font-weight: 300;
-        }
 
         .card-grid {
             display: grid;
@@ -209,20 +208,32 @@
             transform: scale(1.02);
         }
 
-        .github-link {
+        .external-link {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: #24292f;
             color: white;
-            padding: 8px 20px;
+            padding: 14px 24px;
             border-radius: 30px;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin: 6px 6px 6px 0;
+            transition: 0.2s;
         }
-        .github-link:hover {
-            background: #161b22;
+        .external-link:hover {
+            background: var(--accent);
+        }
+
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 28px;
+            padding: 12px 16px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-soft);
+            border-radius: 0 8px 8px 0;
+            line-height: 1.5;
         }
 
         footer {
@@ -234,7 +245,6 @@
             text-align: center;
         }
 
-        /* Responsive */
         @media (max-width: 650px) {
             header { flex-direction: column; align-items: start; gap: 12px; }
             .lang-bar { justify-content: flex-start; }
@@ -243,18 +253,18 @@
 </head>
 <body>
 
-<!-- DEEP-RED STRIPE (flag reference) -->
+<!-- DEEP-RED STRIPE -->
 <div class="red-stripe"></div>
 
 <header>
     <div class="logo">
-        <h1><span>CCCP</span>‑Auto Asiantuntija</h1>
-        <div class="sub" data-i18n="tagline">Restaurointi · Varaosat · Neuvonta</div>
+        <h1><span>X</span>-CCCP</h1>
+        <div class="sub">EX-USSR</div>
     </div>
     <nav class="nav-menu">
-        <a href="#" class="active" data-page="home" data-i18n="nav_home">Etusivu</a>
-        <a href="#" data-page="contact" data-i18n="nav_contact">Ota yhteyttä</a>
-        <a href="#" data-page="projects" data-i18n="nav_projects">Projektit</a>
+        <a href="#" class="active" data-page="home" data-i18n="nav_home">EX-USSR</a>
+        <a href="#" data-page="resources" data-i18n="nav_resources">Tietolähde</a>
+        <a href="#" data-page="contact" data-i18n="nav_contact">Viestiyhteydet</a>
     </nav>
 </header>
 
@@ -268,38 +278,63 @@
 
 <!-- ========== PAGE: HOME ========== -->
 <div id="page-home" class="page active-page">
-    <h2 data-i18n="home_title">Neuvostoautojen asiantuntija <small data-i18n="home_title_small">yli 30 vuoden kokemuksella</small></h2>
-    <p style="font-size:1.15rem; max-width:700px;" data-i18n="home_intro">
-        Autan harrastajia Suomessa, Euroopassa ja maailmalla restauroimaan Neuvostoliiton autoja:
-        GAZ, VAZ, Moskvich, Zaporozhets ja UAZ. Harvinaisten varaosien etsintä,
-        tekniset neuvot ja kenttädiagnostiikka.
+    <h2 data-i18n="home_title">X-CCCP, X-USSR</h2>
+    <p style="font-size:1.1rem; max-width:760px;" data-i18n="home_intro">
+        X-CCCP, X-USSR or EX-CCCP, EX USSR — simultaneously both "outside" and "former" — because this state is no longer exists, and the focus of the resource author's interest is concentrated on the artifacts of the technical history of this country that left outside its geographic and temporal borders.
+    </p>
+
+    <p style="font-size:1rem; color:#555; margin-top:22px; font-weight:500; letter-spacing:0.5px;" data-i18n="home_tagline">
+        EX-USSR, X-CCCP, outside USSR —
     </p>
 
     <div class="card-grid">
         <div class="card">
-            <h3 data-i18n="card1_title">🔧 Korjaus &amp; restaurointi</h3>
-            <p data-i18n="card1_text">Koko prosessi: korityöt, moottori, sähköt. Alkuperäisyys ja luotettavuus.</p>
+            <h3>📍 <span data-i18n="card_where_title">Missä?</span></h3>
+            <p data-i18n="card_where_text">Suomessa, Mikkelin kaupungissa.</p>
         </div>
         <div class="card">
-            <h3 data-i18n="card2_title">🔍 Varaosien etsintä</h3>
-            <p data-i18n="card2_text">Alkuperäisosat, vastaavat osat ja tilaustyöt. Tunnen toimittajat EU:ssa ja IVY-maissa.</p>
+            <h3>👤 <span data-i18n="card_who_title">Kuka?</span></h3>
+            <p data-i18n="card_who_text">Neuvostoliitossa syntynyt, veteraaniajoneuvojen harrastaja, diplomi insinööri, Mikkelin Mobilistit r.y.:n jäsen.</p>
         </div>
         <div class="card">
-            <h3 data-i18n="card3_title">📚 Tekninen arkisto</h3>
-            <p data-i18n="card3_text">Ohjeet, kytkentäkaaviot ja luettelot. Kaikki mitä tarvitset asiantuntevaan korjaukseen.</p>
+            <h3>🎯 <span data-i18n="card_why_title">Miksi?</span></h3>
+            <p data-i18n="card_why_text">Tuodakseni panokseni historian ja sen artefaktien säilyttämiseen tuleville sukupolville. Tukeakseni kollegoita — oldtimer-harrastajia Suomessa ja sen ulkopuolella.</p>
+        </div>
+        <div class="card">
+            <h3>🛠️ <span data-i18n="card_how_title">Millä ja miten?</span></h3>
+            <p data-i18n="card_how_text">Historiallisella ja teknisellä tiedolla, käytännön avulla restauroinnissa, korjauksessa ja varaosien etsinnässä.</p>
         </div>
     </div>
+
+    <p class="disclaimer" data-i18n="disclaimer">
+        Vastuuvapauslauseke: Tämän resurssin painopiste on yksinomaan tekniikan historia — ilman politiikkaa, armeijoita, salapoliiseja ja kansainvälisiä kommunistisia liikkeitä.
+    </p>
 
     <a href="#" class="cta-button" data-page="contact" data-i18n="cta_contact">✉️ Ota yhteyttä</a>
 </div>
 
-<!-- ========== PAGE: CONTACT (with Honeypot) ========== -->
+<!-- ========== PAGE: RESOURCES (Tietolähde) ========== -->
+<div id="page-resources" class="page">
+    <h2 data-i18n="resources_title">Tietolähde</h2>
+    <p style="margin-bottom:18px;" data-i18n="resources_intro">Linkkejä ulkoisiin arkistoihin ja tietolähteisiin:</p>
+
+    <div style="display:flex; flex-direction:column; gap:12px; max-width:520px;">
+        <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener" data-i18n="res1">📚 Suomen Moskvish kerhon arkisto</a>
+        <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener" data-i18n="res2">📚 Teknisen tiedon arkisto</a>
+    </div>
+
+    <p style="margin-top:24px; color:#555; font-size:0.95rem;" data-i18n="resources_footer">
+        ---
+    </p>
+</div>
+
+<!-- ========== PAGE: CONTACT (Viestiyhteydet) ========== -->
 <div id="page-contact" class="page">
     <h2 data-i18n="contact_title">Ota yhteyttä</h2>
     <p style="margin-bottom:20px;" data-i18n="contact_intro">Täytä lomake — vastaan 24 tunnin kuluessa.</p>
 
     <form id="contactForm" style="max-width:500px; background:white; padding:28px; border-radius:16px; box-shadow:0 2px 12px rgba(0,0,0,0.05);">
-        <!-- Honeypot (bot trap) — hidden -->
+        <!-- Honeypot (bot trap) — hidden from humans -->
         <div style="display:none;">
             <label for="hp_website">Website</label>
             <input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
@@ -322,24 +357,8 @@
     <p id="formStatus" style="margin-top:12px; font-style:italic;"></p>
 </div>
 
-<!-- ========== PAGE: PROJECTS (GitHub links) ========== -->
-<div id="page-projects" class="page">
-    <h2 data-i18n="projects_title">Projektini GitHubissa</h2>
-    <p style="margin-bottom:18px;" data-i18n="projects_intro">Täältä löydät tekniset arkistot, käsikirjat ja kytkentäkaaviot.</p>
-
-    <div style="display:flex; flex-direction:column; gap:10px;">
-        <a href="#" class="github-link" target="_blank" data-i18n="proj1">📂 GAZ-21 ja VAZ-2101 korjausoppaat</a>
-        <a href="#" class="github-link" target="_blank" data-i18n="proj2">📂 Varaosaluettelo (alkuperäisnumerot)</a>
-        <a href="#" class="github-link" target="_blank" data-i18n="proj3">📂 Neuvostoliiton autojen sähkökaaviot</a>
-        <a href="#" class="github-link" target="_blank" data-i18n="proj4">📂 Restaurointiaiheet (blogini)</a>
-    </div>
-    <p style="margin-top:24px; color:#555; font-size:0.95rem;" data-i18n="projects_footer">
-        🔗 Kaikki arkistot ovat avoimia — linkit vievät suoraan GitHub Pages ‑sivustolle.
-    </p>
-</div>
-
 <footer data-i18n="footer_text">
-    © 2026 CCCP-Auto Asiantuntija · Suomi · Tehty ❤️:llä harrastajille
+    © 2026 X-CCCP · Mikkeli, Suomi
 </footer>
 
 <!-- ========== JAVASCRIPT ========== -->
@@ -351,8 +370,8 @@
         const navLinks = document.querySelectorAll('.nav-menu a');
         const pages = {
             home: document.getElementById('page-home'),
-            contact: document.getElementById('page-contact'),
-            projects: document.getElementById('page-projects')
+            resources: document.getElementById('page-resources'),
+            contact: document.getElementById('page-contact')
         };
 
         function showPage(pageId) {
@@ -375,13 +394,13 @@
             });
         });
 
-        // CTA button on home page
+        // CTA button on the home page -> same target as menu item #3
         document.querySelector('.cta-button[data-page="contact"]')?.addEventListener('click', function(e) {
             e.preventDefault();
             showPage('contact');
         });
 
-        // Restore from hash (#contact)
+        // Restore page from hash
         window.addEventListener('hashchange', function() {
             const hash = location.hash.replace('#', '');
             if (hash && pages[hash]) showPage(hash);
@@ -395,126 +414,126 @@
         // Default language: Finnish
         const translations = {
             fi: {
-                tagline: "Restaurointi · Varaosat · Neuvonta",
-                nav_home: "Etusivu",
-                nav_contact: "Ota yhteyttä",
-                nav_projects: "Projektit",
-                home_title: "Neuvostoautojen asiantuntija ",
-                home_title_small: "yli 30 vuoden kokemuksella",
-                home_intro: "Autan harrastajia Suomessa, Euroopassa ja maailmalla restauroimaan Neuvostoliiton autoja: GAZ, VAZ, Moskvich, Zaporozhets ja UAZ. Harvinaisten varaosien etsintä, tekniset neuvot ja kenttädiagnostiikka.",
-                card1_title: "🔧 Korjaus & restaurointi",
-                card1_text: "Koko prosessi: korityöt, moottori, sähköt. Alkuperäisyys ja luotettavuus.",
-                card2_title: "🔍 Varaosien etsintä",
-                card2_text: "Alkuperäisosat, vastaavat osat ja tilaustyöt. Tunnen toimittajat EU:ssa ja IVY-maissa.",
-                card3_title: "📚 Tekninen arkisto",
-                card3_text: "Ohjeet, kytkentäkaaviot ja luettelot. Kaikki mitä tarvitset asiantuntevaan korjaukseen.",
+                nav_home: "EX-USSR",
+                nav_resources: "Tietolähde",
+                nav_contact: "Viestiyhteydet",
+                home_title: "X-CCCP, X-USSR",
+                home_intro: "X-CCCP, X-USSR tai EX-CCCP, EX USSR — samanaikaisesti sekä \"ulkopuolella\" että \"entinen\" — koska tätä valtiota ei ole enää olemassa, ja resurssin tekijän kiinnostuksen kohteena ovat tämän maan teknillisen historian artefaktit, jotka ovat jääneet sen maantieteellisten ja ajallisten rajojen ulkopuolelle.",
+                home_tagline: "EX-USSR, X-CCCP, outside CCCP —",
+                card_where_title: "Missä?",
+                card_where_text: "Suomessa, Mikkelin kaupungissa.",
+                card_who_title: "Kuka?",
+                card_who_text: "Neuvostoliitossa syntynyt, veteraaniajoneuvojen harrastaja, diplomi insinööri, Mikkelin Mobilistit r.y.:n jäsen.",
+                card_why_title: "Miksi?",
+                card_why_text: "Tuodakseni panokseni historian ja sen artefaktien säilyttämiseen tuleville sukupolville. Tukeakseni kollegoita — oldtimer-harrastajia Suomessa ja sen ulkopuolella.",
+                card_how_title: "Millä ja miten?",
+                card_how_text: "Historiallisella ja teknisellä tiedolla, restauroinnin, korjauksijen avustuksella ja varaosien etsintämällä.",
+                disclaimer: "Vastuuvapauslauseke: Tämän resurssin painopiste on yksinomaisesti tekniikan historia — ilman politiikkaa, armeijoita, salapoliiseja ja kansainvälisiä kommunistisia liikkeitä.",
                 cta_contact: "✉️ Ota yhteyttä",
                 contact_title: "Ota yhteyttä",
                 contact_intro: "Täytä lomake — vastaan 24 tunnin kuluessa.",
                 form_name: "Nimi",
                 form_message: "Viesti",
                 form_send: "Lähetä",
-                projects_title: "Projektini GitHubissa",
-                projects_intro: "Täältä löydät tekniset arkistot, käsikirjat ja kytkentäkaaviot.",
-                proj1: "📂 GAZ-21 ja VAZ-2101 korjausoppaat",
-                proj2: "📂 Varaosaluettelo (alkuperäisnumerot)",
-                proj3: "📂 Neuvostoliiton autojen sähkökaaviot",
-                proj4: "📂 Restaurointiaiheet (blogini)",
-                projects_footer: "🔗 Kaikki arkistot ovat avoimia — linkit vievät suoraan GitHub Pages ‑sivustolle.",
-                footer_text: "© 2026 CCCP-Auto Asiantuntija · Suomi · Tehty ❤️:llä harrastajille",
+                resources_title: "Tietolähde",
+                resources_intro: "Linkkejä ulkoisiin arkistoihin ja tietolähteisiin:",
+                res1: "📚 Suomen Moskvish kerhon arkisto",
+                res2: "📚 Teknisen tiedon arkisto",
+                resources_footer: "----",
+                footer_text: "© 2026 X-CCCP · Mikkeli, Suomi",
                 form_ok: "✅ Kiitos! Otan sinuun yhteyttä pian.",
                 form_bot: "⛔ Hakemuksesi hylättiin (bot-detektio)."
             },
             en: {
-                tagline: "Restoration · Spare parts · Consulting",
-                nav_home: "Home",
-                nav_contact: "Contact",
-                nav_projects: "Projects",
-                home_title: "Soviet car expert ",
-                home_title_small: "with 30+ years of experience",
-                home_intro: "I help enthusiasts in Finland, Europe and worldwide restore Soviet cars: GAZ, VAZ, Moskvich, Zaporozhets and UAZ. Sourcing rare parts, technical consulting and on-site diagnostics.",
-                card1_title: "🔧 Repair & restoration",
-                card1_text: "Full cycle: bodywork, engine, electrics. Authenticity and reliability.",
-                card2_title: "🔍 Spare parts sourcing",
-                card2_text: "Original parts, equivalents and custom orders. I know suppliers in the EU and CIS.",
-                card3_title: "📚 Technical archive",
-                card3_text: "Manuals, wiring diagrams and catalogs. Everything for expert-level repair.",
+                nav_home: "EX-USSR",
+                nav_resources: "Data Source",
+                nav_contact: "Contacts",
+                home_title: "X-CCCP, X-USSR",
+                home_intro: "X-CCCP, X-USSR or EX-CCCP, EX USSR — simultaneously both \"outside\" and \"former\" — because this state no longer exists, and the focus of the resource author's interest is the artifacts of the technical history of this country that left outside its geographic and temporal borders.",
+                home_tagline: "EX-USSR, X-CCCP, outside USSR —",
+                card_where_title: "Where?",
+                card_where_text: "In Finland, in the city of Mikkeli.",
+                card_who_title: "Who?",
+                card_who_text: "An oldtimer enthusiast born in the USSR, a certified engineer, member of the Mikkelin Mobilistit r.y. club.",
+                card_why_title: "Why?",
+                card_why_text: "To contribute to preserving history and its artifacts for future generations. To support fellow oldtimer enthusiasts in Finland and beyond.",
+                card_how_title: "With what and how?",
+                card_how_text: "With historical and technical information, practical help in restoration, repair, and searching for spare parts.",
+                disclaimer: "Disclaimer: The focus of this resource is exclusively the history of technology — without politics, armies, secret services, and international communist movements.",
                 cta_contact: "✉️ Contact me",
                 contact_title: "Contact me",
                 contact_intro: "Fill in the form — I will reply within 24 hours.",
                 form_name: "Name",
                 form_message: "Message",
                 form_send: "Send",
-                projects_title: "My projects on GitHub",
-                projects_intro: "Here you will find technical archives, manuals and wiring diagrams.",
-                proj1: "📂 GAZ-21 and VAZ-2101 repair guides",
-                proj2: "📂 Spare parts catalog (original numbers)",
-                proj3: "📂 Soviet car wiring diagrams",
-                proj4: "📂 Restoration articles (my blog)",
-                projects_footer: "🔗 All archives are open — links go directly to GitHub Pages.",
-                footer_text: "© 2026 CCCP-Auto Expert · Finland · Made with ❤️ for enthusiasts",
+                resources_title: "Data Source",
+                resources_intro: "Links to external archives and information sources:",
+                res1: "📚 Suomen Moskvish kerhon arkisto",
+                res2: "📚 Technical Information Archive",
+                resources_footer: "-----",
+                footer_text: "© 2026 X-CCCP · Mikkeli, Finland",
                 form_ok: "✅ Thank you! I will get back to you soon.",
                 form_bot: "⛔ Your submission was rejected (bot detection)."
             },
             es: {
-                tagline: "Restauración · Repuestos · Asesoría",
-                nav_home: "Inicio",
+                nav_home: "EX-USSR",
+                nav_resources: "Fuente de datos",
                 nav_contact: "Contacto",
-                nav_projects: "Proyectos",
-                home_title: "Experto en autos soviéticos ",
-                home_title_small: "con más de 30 años de experiencia",
-                home_intro: "Ayudo a aficionados en Finlandia, Europa y el mundo a restaurar autos soviéticos: GAZ, VAZ, Moskvich, Zaporozhets y UAZ. Búsqueda de repuestos raros, asesoría técnica y diagnóstico en sitio.",
-                card1_title: "🔧 Reparación y restauración",
-                card1_text: "Ciclo completo: carrocería, motor, electricidad. Autenticidad y fiabilidad.",
-                card2_title: "🔍 Búsqueda de repuestos",
-                card2_text: "Piezas originales, equivalentes y a medida. Conozco proveedores en la UE y la CEI.",
-                card3_title: "📚 Archivo técnico",
-                card3_text: "Manuales, esquemas eléctricos y catálogos. Todo para una reparación experta.",
+                home_title: "X-CCCP, X-USSR",
+                home_intro: "X-CCCP, X-USSR o EX-CCCP, EX USSR — simultáneamente tanto \"fuera\" como \"ex\" — porque este estado ya no existe, y el foco del interés del autor del recurso son los artefactos de la historia técnica de este país que terminaron fuera de sus fronteras geográficas y temporales.",
+                home_tagline: "EX-USSR, X-CCCP, outside CCCP —",
+                card_where_title: "¿Dónde?",
+                card_where_text: "En Finlandia, en la ciudad de Mikkeli.",
+                card_who_title: "¿Quién?",
+                card_who_text: "Un entusiasta nacido en la URSS, apasionado por los oldtimers, ingeniero titulado, miembro del club Mikkelin Mobilistit r.y.",
+                card_why_title: "¿Para qué?",
+                card_why_text: "Para contribuir a la preservación de la historia y sus artefactos para las futuras generaciones. Para apoyar a los compañeros entusiastas de los oldtimers en Finlandia y más allá.",
+                card_how_title: "¿Con qué y cómo?",
+                card_how_text: "Con información histórica y técnica, ayuda práctica en la restauración, reparación y búsqueda de repuestos.",
+                disclaimer: "Descargo de responsabilidad: el enfoque de este recurso es exclusivamente la historia de la tecnología — sin política, ejércitos, servicios especiales ni movimientos comunistas internacionales.",
                 cta_contact: "✉️ Contáctame",
                 contact_title: "Contáctame",
                 contact_intro: "Rellena el formulario — responderé en 24 horas.",
                 form_name: "Nombre",
                 form_message: "Mensaje",
                 form_send: "Enviar",
-                projects_title: "Mis proyectos en GitHub",
-                projects_intro: "Aquí encontrarás archivos técnicos, manuales y esquemas eléctricos.",
-                proj1: "📂 Guías de reparación GAZ-21 y VAZ-2101",
-                proj2: "📂 Catálogo de repuestos (números originales)",
-                proj3: "📂 Esquemas eléctricos de autos soviéticos",
-                proj4: "📂 Artículos de restauración (mi blog)",
-                projects_footer: "🔗 Todos los archivos son abiertos — los enlaces van directamente a GitHub Pages.",
-                footer_text: "© 2026 CCCP-Auto Experto · Finlandia · Hecho con ❤️ para aficionados",
+                resources_title: "Fuente de datos",
+                resources_intro: "Enlaces a archivos externos y fuentes de información:",
+                res1: "📚 Suomen Moskvish kerhon arkisto",
+                res2: "📚 Archivo de información técnica",
+                resources_footer: "------",
+                footer_text: "© 2026 X-CCCP · Mikkeli, Finlandia",
                 form_ok: "✅ ¡Gracias! Me pondré en contacto pronto.",
                 form_bot: "⛔ Tu envío fue rechazado (detección de bots)."
             },
             zh: {
-                tagline: "修复 · 零件 · 咨询",
-                nav_home: "首页",
-                nav_contact: "联系我",
-                nav_projects: "项目",
-                home_title: "苏联汽车专家 ",
-                home_title_small: "拥有30多年经验",
-                home_intro: "我帮助芬兰、欧洲及世界各地的爱好者修复苏联汽车：GAZ、VAZ、莫斯科人、扎波罗热茨和UAZ。寻找稀有零件、技术咨询和现场诊断。",
-                card1_title: "🔧 维修与修复",
-                card1_text: "全流程：车身、发动机、电气。保持原厂风格与可靠性。",
-                card2_title: "🔍 零件采购",
-                card2_text: "原厂件、替代件和定制件。熟悉欧盟和独联体的供应商。",
-                card3_title: "📚 技术档案",
-                card3_text: "手册、电路图和目录。专业维修所需的一切。",
+                nav_home: "EX-USSR",
+                nav_resources: "资料来源",
+                nav_contact: "联系方式",
+                home_title: "X-CCCP, X-USSR",
+                home_intro: "X-CCCP、X-USSR 或 EX-CCCP、EX USSR — 同时意味着\"之外\"与\"前\" — 因为这个国家已不复存在，而本资源作者关注的焦点是那些流落于其地理与时间边界之外的技术史文物。",
+                home_tagline: "EX-USSR, X-CCCP, outside CCCP —",
+                card_where_title: "何处？",
+                card_where_text: "在芬兰，米凯利市。",
+                card_who_title: "何人？",
+                card_who_text: "一位出生于苏联、热爱老爷车的人，持证工程师，Mikkelin Mobilistit r.y. 俱乐部成员。",
+                card_why_title: "为何？",
+                card_why_text: "为向后代保存历史及其文物作出贡献。为支持芬兰及海外的老爷车爱好者同行。",
+                card_how_title: "以何种方式？",
+                card_how_text: "以历史和技术信息、在修复、维修和寻找零件方面的实际帮助。",
+                disclaimer: "免责声明：本资源专注于技术历史 — 不涉及政治、军队、特勤机构和国际共产主义运动。",
                 cta_contact: "✉️ 联系我",
                 contact_title: "联系我",
                 contact_intro: "填写表格 — 我会在24小时内回复。",
                 form_name: "姓名",
                 form_message: "留言",
                 form_send: "发送",
-                projects_title: "我的 GitHub 项目",
-                projects_intro: "这里汇集了技术档案、手册和电路图。",
-                proj1: "📂 GAZ-21 与 VAZ-2101 维修指南",
-                proj2: "📂 零件目录（原厂编号）",
-                proj3: "📂 苏联汽车电路图",
-                proj4: "📂 修复文章（我的博客）",
-                projects_footer: "🔗 所有档案均开放 — 链接直接指向 GitHub Pages。",
-                footer_text: "© 2026 CCCP-Auto 专家 · 芬兰 · 用 ❤️ 为爱好者打造",
+                resources_title: "资料来源",
+                resources_intro: "指向外部档案和信息来源的链接：",
+                res1: "📚 Suomen Moskvish kerhon arkisto",
+                res2: "📚 技术信息档案",
+                resources_footer: "--------",
+                footer_text: "© 2026 X-CCCP · 芬兰，米凯利",
                 form_ok: "✅ 谢谢！我会尽快与您联系。",
                 form_bot: "⛔ 您的提交已被拒绝（机器人检测）。"
             }
@@ -527,36 +546,18 @@
             const t = translations[lang];
             if (!t) return;
 
-            // Update all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.dataset.i18n;
                 if (t[key] !== undefined) {
-                    // Special handling for title with nested <small>
-                    if (key === 'home_title') {
-                        const smallEl = el.querySelector('small');
-                        const smallText = smallEl ? smallEl.outerHTML : '';
-                        el.innerHTML = t[key] + smallText;
-                        // Re-translate the small element
-                        if (smallEl) {
-                            const smallKey = smallEl.dataset.i18n;
-                            if (smallKey && t[smallKey]) {
-                                smallEl.textContent = t[smallKey];
-                            }
-                        }
-                    } else {
-                        el.textContent = t[key];
-                    }
+                    el.textContent = t[key];
                 }
             });
 
-            // Update <html lang="...">
             htmlRoot.lang = lang;
 
-            // Update active button state
             langBtns.forEach(b => b.classList.remove('active-lang'));
             document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add('active-lang');
 
-            // Persist choice
             try { localStorage.setItem('preferredLang', lang); } catch(e) {}
         }
 
@@ -581,7 +582,6 @@
         form.addEventListener('submit', function(e) {
             e.preventDefault();
 
-            // Honeypot check: if filled — it's a bot
             const hp = document.getElementById('hp_website');
             if (hp && hp.value.trim() !== '') {
                 const lang = htmlRoot.lang;
@@ -590,7 +590,6 @@
                 return;
             }
 
-            // Simulated submission (replace with real endpoint later)
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             console.log('📬 Submission:', data);
@@ -600,19 +599,16 @@
             status.style.color = '#1e7e34';
             form.reset();
 
-            // In production: replace with fetch() to your backend or Formspree endpoint
+            // Replace with real fetch() to your backend / Formspree endpoint in production
         });
 
-        // ----- 4. ADDITIONAL META FOR AI AGENTS -----
+        // ----- 4. EXTRA META FOR AI AGENTS -----
         const metaRobots = document.createElement('meta');
         metaRobots.name = 'robots';
         metaRobots.content = 'index, follow, max-snippet:-1, max-image-preview:large';
         document.head.appendChild(metaRobots);
 
-        // Google-site-verification — insert your code from Search Console here
-        // <meta name="google-site-verification" content="your_code" />
-
-        console.log('✅ Landing page loaded. All agents welcome.');
+        console.log('✅ Landing page loaded.');
     })();
 </script>
 
