@@ -1,4 +1,4 @@
-* CHINESE CONTENT — copy of fi.js with translated values. */
+/* CHINESE CONTENT — copy of fi.js with translated values. */
 export default {
     nav_home: "EX-USSR",
     nav_resources: "资料来源",
