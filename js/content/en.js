@@ -6,7 +6,7 @@ export default {
 
     home_title: "X-CCCP, X-USSR",
     home_intro: "X-CCCP, X-USSR or EX-CCCP, EX USSR — simultaneously both "outside" and "former" — because this state is no longer exists, and the focus of the resource author's interest is concentrated on the artifacts of the technical history of this country that left outside its geographic and temporal borders.",
-    home_tagline: "EX-USSR, X-CCCP, outside USSR —",
+    home_tagline: "EX-USSR, X-CCCP, outside-USSR",
 
     card_where_title: "Where?",
     card_where_text: "In Finland, in the city of Mikkeli.",
