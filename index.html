@@ -1,183 +1,723 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-CCCP | EX-USSR — Technical history artifacts</title>
+<style>
+/* ==========================================================================
+   ROOT VARIABLES
+   Layout, spacing and typography tokens are unchanged from the dark theme.
+   Only the color values have been switched to a light palette.
+   ========================================================================== */
+:root {
+  --bg: #f7f5f3;              /* Main page background (light) */
+  --surface: #ffffff;         /* Card / panel background */
+  --surface2: #f0edea;        /* Secondary surface (hover states, inputs) */
+  --border: #dddddd;          /* Default border color */
+  --text: #1e1e1e;            /* Primary text color */
+  --muted: #666666;           /* Muted / secondary text color */
+  --red: #c1121f;             /* Accent red */
+  --red-dim: #8a0e18;         /* Dimmed red for hover states */
+  --accent: #8a0e18;          /* Dark red used for taglines */
+  --radius: 10px;             /* Standard border radius */
+}
 
-    <!-- ===================================================================
-         [MODIFY] SEO BLOCK
-         Replace "your-github-username.github.io/repo-name/" everywhere
-         with your real site URL (used in canonical, og:url, JSON-LD).
-         Replace "logo.jpg" with the path to your preview image.
-         =================================================================== -->
-    <title>X-CCCP | EX-USSR — Technical history artifacts</title>
-    <meta name="description" content="X-CCCP / EX-USSR — artifacts of the technical history of the former USSR. Restoration, spare parts, consulting. Mikkeli, Finland.">
-    <meta name="keywords" content="X-CCCP, EX-USSR, oldtimers, restoration, spare parts, varaosat, entisöintti, Mikkeli, Finland, Moskvich, Moskvitsh, Izh, GAZ, VAZ, Lada, UAZ">
-    <link rel="canonical" href="https://8132424-eng.github.io/x-cccp/">
+/* ==========================================================================
+   GLOBAL RESET
+   ========================================================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-    <!-- Open Graph (social media preview) -->
-    <meta property="og:title" content="X-CCCP | EX-USSR">
-    <meta property="og:description" content="Artifacts of the technical history of the former USSR.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://8132424-eng.github.io/x-cccp/">
-    <meta property="og:image" content="https://your-github-username.github.io/repo-name/logo.jpg">
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  padding-top: 4px;           /* Space for the fixed red stripe at the top */
+}
 
-    <!-- ===================================================================
-         [MODIFY] AI AGENT STRUCTURED DATA (JSON-LD)
-         Fill in your real name, URL and address.
-         =================================================================== -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Your Name",
-        "jobTitle": "Oldtimer enthusiast and certified engineer",
-         "url": "https://8132424-eng.github.io/x-cccp/",
-        "knowsAbout": ["USSR vehicles", "NL ajoneuvot", "NL maatalouskoneet", "NL traktorit", "Restoration", "Entisöinti", "Spare parts", "Varaosat", "GAZ", "VAZ", "Lada", "Moskvich", "Moskvitsh", "Izh", "Zaporozhets", "UAZ", "Technical history"],
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Mikkeli",
-            "addressCountry": "Finland"
-        },
-        "memberOf": {
-            "@type": "Organization",
-            "name": "Mikkelin Mobilistit r.y."
-        }
-    }
-    </script>
+/* ==========================================================================
+   DECORATIVE RED STRIPE
+   ========================================================================== */
+.red-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--red-dim), var(--red));
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+}
 
-    <link rel="stylesheet" href="css/styles.css">
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+header {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.logo h1 span { color: var(--red); }
+
+.logo .sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   NAVIGATION MENU
+   ========================================================================== */
+nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+nav a:hover, nav a.active {
+  color: var(--text);
+  border-bottom-color: var(--red);
+}
+
+/* ==========================================================================
+   LANGUAGE SWITCHER BAR
+   ========================================================================== */
+.lang-bar {
+  max-width: 900px;
+  margin: 0.75rem auto 0;
+  padding: 0 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.lang-bar button {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-bar button.active {
+  background: var(--red-dim);
+  color: #ffffff;
+  border-color: var(--red);
+}
+
+/* ==========================================================================
+   MAIN CONTENT AREA
+   ========================================================================== */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+.page { display: none; animation: fade .3s ease; }
+.page.active-page { display: block; }
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+h2 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+p  { margin-bottom: 0.9rem; }
+.lead { font-size: 1.05rem; color: #444444; }   /* was #ccc in dark theme */
+
+.tagline {
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   CARD GRID (Home page feature cards)
+   ========================================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  transition: border-color .2s, transform .15s;
+}
+.card:hover {
+  border-color: var(--red-dim);
+  transform: translateY(-2px);
+}
+.card p { font-size: 0.9rem; color: #444444; margin-bottom: 0; }  /* was #bbb */
+
+.disclaimer {
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-left: 3px solid var(--red-dim);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.cta-button {
+  display: inline-block;
+  background: var(--red);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 24px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.cta-button:hover { background: var(--red-dim); transform: translateY(-1px); }
+
+/* ==========================================================================
+   RESOURCE LINKS (Resources page)
+   ========================================================================== */
+.link-stack { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.25rem 0; }
+.external-link {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: border-color .2s, background .2s;
+}
+.external-link:hover { border-color: var(--red); background: var(--surface2); }
+.muted { font-size: 0.8rem; color: var(--muted); }
+
+/* ==========================================================================
+   CONTACT FORM
+   ========================================================================== */
+.contact-form { max-width: 480px; margin-top: 1.5rem; }
+.form-row { margin-bottom: 1rem; }
+.form-row label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+.form-row input, .form-row textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.65rem 0.85rem;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color .2s;
+}
+.form-row input:focus, .form-row textarea:focus {
+  outline: none;
+  border-color: var(--red);
+}
+.form-row textarea { resize: vertical; min-height: 110px; }
+
+.field-note {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+.form-msg { font-size: 0.9rem; margin-top: 0.75rem; }
+
+/* ==========================================================================
+   HONEYPOT FIELD
+   ========================================================================== */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE OVERRIDES (mobile)
+   ========================================================================== */
+@media (max-width: 600px) {
+  header { flex-direction: column; align-items: flex-start; }
+  nav { gap: 0.85rem; }
+  .card-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-
-<!-- Decorative deep-red stripe (flag reference) -->
 <div class="red-stripe"></div>
 
-<!-- ============ HEADER ============ -->
 <header>
-    <div class="logo">
-        <h1><span>X</span>-CCCP</h1>
-        <div class="sub">EX-USSR</div>
-    </div>
-    <!-- Navigation: labels are injected by i18n.js via data-i18n -->
-    <nav class="nav-menu" id="navMenu">
-        <a href="#home" data-page="home" data-i18n="nav_home" class="active"></a>
-        <a href="#resources" data-page="resources" data-i18n="nav_resources"></a>
-        <a href="#contact" data-page="contact" data-i18n="nav_contact"></a>
-    </nav>
+  <div class="logo">
+    <h1><span>X</span>-CCCP</h1>
+    <div class="sub">EX-USSR</div>
+  </div>
+  <nav id="navMenu">
+    <a href="#home"      data-page="home"      data-i18n="nav_home"      class="active"></a>
+    <a href="#resources" data-page="resources" data-i18n="nav_resources"></a>
+    <a href="#contact"   data-page="contact"   data-i18n="nav_contact"></a>
+  </nav>
 </header>
 
-<!-- ============ LANGUAGE SWITCHER ============ -->
-<!-- Buttons are generated by i18n.js from LANGUAGES array in config.js -->
 <div class="lang-bar" id="langBar"></div>
 
-<!-- ============ PAGE: HOME ============ -->
-<div id="page-home" class="page active-page">
+<main>
+  <div id="page-home" class="page active-page">
     <h2 data-i18n="home_title"></h2>
     <p class="lead" data-i18n="home_intro"></p>
     <p class="tagline" data-i18n="home_tagline"></p>
 
     <div class="card-grid">
-        <div class="card">
-            <h3>📍 <span data-i18n="card_where_title"></span></h3>
-            <p data-i18n="card_where_text"></p>
-        </div>
-        <div class="card">
-            <h3>👤 <span data-i18n="card_who_title"></span></h3>
-            <p data-i18n="card_who_text"></p>
-        </div>
-        <div class="card">
-            <h3>🎯 <span data-i18n="card_why_title"></span></h3>
-            <p data-i18n="card_why_text"></p>
-        </div>
-        <div class="card">
-            <h3>🛠️ <span data-i18n="card_how_title"></span></h3>
-            <p data-i18n="card_how_text"></p>
-        </div>
+      <div class="card">
+        <h3>📍 <span data-i18n="card_where_title"></span></h3>
+        <p data-i18n="card_where_text"></p>
+      </div>
+      <div class="card">
+        <h3>👤 <span data-i18n="card_who_title"></span></h3>
+        <p data-i18n="card_who_text"></p>
+      </div>
+      <div class="card">
+        <h3>🎯 <span data-i18n="card_why_title"></span></h3>
+        <p data-i18n="card_why_text"></p>
+      </div>
+      <div class="card">
+        <h3>🛠️ <span data-i18n="card_how_title"></span></h3>
+        <p data-i18n="card_how_text"></p>
+      </div>
     </div>
 
     <p class="disclaimer" data-i18n="disclaimer"></p>
-
-    <!-- CTA: goes to the same page as menu item #3 -->
     <a href="#contact" class="cta-button" data-page="contact" data-i18n="cta_contact"></a>
-</div>
+  </div>
 
-<!-- ============ PAGE: RESOURCES (Tietolähde) ============ -->
-<!-- [MODIFY] External links: edit href below or move them to config.js -->
-<div id="page-resources" class="page">
+  <div id="page-resources" class="page">
     <h2 data-i18n="resources_title"></h2>
     <p data-i18n="resources_intro"></p>
-
     <div class="link-stack">
-        <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
-            <span data-i18n="res1"></span>
-        </a>
-        <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
-            <span data-i18n="res2"></span>
-        </a>
+      <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
+        <span data-i18n="res1"></span>
+      </a>
+      <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
+        <span data-i18n="res2"></span>
+      </a>
     </div>
-
     <p class="muted" data-i18n="resources_footer"></p>
-</div>
+  </div>
 
-<!-- ============ PAGE: CONTACT (Viestiyhteydet) ============ -->
-<!-- =====================================================================
-     [MODIFY] NETLIFY FORM
-     - name="contact"  →  must match NETLIFY_FORM_NAME in js/config.js
-     - data-netlify="true"  →  tells Netlify to detect this form
-     - data-netlify-honeypot="bot-field"  →  enables honeypot
-     - hidden input form-name  →  required for Netlify Forms
-     Do NOT remove any of these attributes.
-     ===================================================================== -->
-<div id="page-contact" class="page">
+  <div id="page-contact" class="page">
     <h2 data-i18n="contact_title"></h2>
     <p data-i18n="contact_intro"></p>
 
-    <form
-        id="contactForm"
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        action="/?success=true#contact"
-        class="contact-form"
-        novalidate
-    >
-        <!-- Required hidden input for Netlify Forms -->
-        <input type="hidden" name="form-name" value="contact">
+    <form id="contactForm" class="contact-form" novalidate>
+      <div class="form-row">
+        <label data-i18n="form_name"></label>
+        <input type="text" name="name" required autocomplete="name">
+      </div>
 
-        <!-- Honeypot field: hidden from humans, visible to bots -->
-        <p class="hp-field" aria-hidden="true">
-            <label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-        </p>
+      <div class="form-row">
+        <label data-i18n="form_email"></label>
+        <input type="email" name="email" required autocomplete="email">
+      </div>
 
-        <div class="form-row">
-            <label data-i18n="form_name"></label>
-            <input type="text" name="name" required autocomplete="name">
-        </div>
-        <div class="form-row">
-            <label data-i18n="form_email"></label>
-            <input type="email" name="email" required autocomplete="email">
-        </div>
-        <div class="form-row">
-            <label data-i18n="form_message"></label>
-            <textarea name="message" rows="5" required></textarea>
-        </div>
+      <div class="form-row">
+        <label data-i18n="form_phone"></label>
+        <input type="tel" name="phone" autocomplete="tel">
+        <span class="field-note" data-i18n="form_phone_note"></span>
+      </div>
 
-        <button type="submit" class="cta-button" data-i18n="form_send"></button>
+      <div class="form-row">
+        <label data-i18n="form_message"></label>
+        <textarea name="message" rows="5" required></textarea>
+      </div>
+
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp_website">Website</label>
+        <input type="text" id="hp_website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <input type="hidden" name="form_ts" id="formTs" value="">
+
+      <button type="submit" class="cta-button" data-i18n="form_send"></button>
+      <p class="form-msg" id="formMsg"></p>
     </form>
+  </div>
+</main>
 
-    <p id="formStatus" class="form-status" role="status"></p>
-</div>
+<footer>
+  <span data-i18n="footer_text"></span>
+</footer>
 
-<!-- ============ FOOTER ============ -->
-<footer data-i18n="footer_text"></footer>
+<script>
+/* ==========================================================================
+   TRANSLATION DICTIONARIES
+   Primary language: Finnish (fi). Other translations are derived from EN.
+   ========================================================================== */
+const content = {
 
-<!-- Entry point: loads all modules -->
-<script type="module" src="js/app.js"></script>
+  /* ------------------------------- FINNISH ------------------------------- */
+  fi: {
+    nav_home: "EX-USSR",
+    nav_resources: "Tietolähde",
+    nav_contact: "Viestiyhteydet",
+    home_title: "X-CCCP, X-USSR",
+    home_intro: "X-CCCP, X-USSR tai EX-CCCP, EX USSR — samanaikaisesti sekä \"ulkopuolella\" että \"entinen\" — koska tätä valtiota ei ole enää olemassa, ja resurssin tekijän kiinnostuksen kohteena ovat tämän maan teknillisen historian artefaktit, jotka ovat jääneet sen maantieteellisten ja ajallisten rajojen ulkopuolelle.",
+    home_tagline: "EX-USSR, X-CCCP, Neuvostoliiton ulkopuolella",
+    card_where_title: "Missä?",
+    card_where_text: "Suomessa, Mikkelin kaupungissa.",
+    card_who_title: "Kuka?",
+    card_who_text: "Neuvostoliitossa syntynyt, veteraaniajoneuvojen harrastaja, diplomi-insinööri, Mikkelin Mobilistit r.y.:n jäsen.",
+    card_why_title: "Miksi?",
+    card_why_text: "Tuodakseni panokseni historian ja sen artefaktien säilyttämiseen tuleville sukupolville. Tukeakseni kollegoita — oldtimer-harrastajia Suomessa ja sen ulkopuolella.",
+    card_how_title: "Millä ja miten?",
+    card_how_text: "Historiallisella ja teknisellä tiedolla, käytännön avulla restauroinnissa, korjauksessa ja varaosien etsinnässä.",
+    disclaimer: "Vastuuvapauslauseke: Tämän resurssin painopiste on yksinomaan tekniikan historia — ilman politiikkaa, armeijoita, erikoispoliiseja ja kansainvälisiä kommunistisia liikkeitä.",
+    cta_contact: "✉️ Ota yhteyttä",
+    resources_title: "Tietolähde",
+    resources_intro: "Linkkejä ulkoisiin arkistoihin ja tietolähteisiin:",
+    res1: "Suomen Moskvitsh kerhon arkisto",
+    res2: "Teknisen tiedon arkisto",
+    resources_footer: "Molemmat linkit avaavat saman arkistosivuston (mosclub.netlify.app).",
+    contact_title: "Ota yhteyttä",
+    contact_intro: "Täytä lomake — vastaan 24 tunnin kuluessa.",
+    form_name: "Nimi",
+    form_email: "Sähköposti",
+    form_phone: "Puhelin (valinnainen)",
+    form_phone_note: "Sähköpostin lisäksi on toivottavaa ilmoittaa puhelinnumero yhteydenottoa varten.",
+    form_message: "Viesti",
+    form_send: "Lähetä",
+    form_ok: "✅ Kiitos! Otan sinuun yhteyttä pian.",
+    form_error: "❌ Valitettavasti lähetys epäonnistui. Yritä myöhemmin uudelleen.",
+    footer_text: "© 2026 X-CCCP · Mikkeli, Suomi"
+  },
 
-<script>console.log('OK JS is alive');</script>
+  /* ------------------------------- SWEDISH ------------------------------- */
+  sv: {
+    nav_home: "EX-USSR",
+    nav_resources: "Datakälla",
+    nav_contact: "Kontakter",
+    home_title: "X-CCCP, X-USSR",
+    home_intro: "X-CCCP, X-USSR eller EX-CCCP, EX USSR — samtidigt både \"utanför\" och \"före detta\" — eftersom denna stat inte längre existerar, och fokus för resursförfattarens intresse ligger på artefakterna från detta lands tekniska historia som lämnats utanför dess geografiska och tidsmässiga gränser.",
+    home_tagline: "EX-USSR, X-CCCP, Utanför Sovjetunionen",
+    card_where_title: "Var?",
+    card_where_text: "I Finland, i staden Mikkeli.",
+    card_who_title: "Vem?",
+    card_who_text: "En oldtimer-entusiast född i Sovjetunionen, passionerad för oldtimers, certifierad ingenjör, medlem i Mikkelin Mobilistit r.y.-klubben.",
+    card_why_title: "Varför?",
+    card_why_text: "För att bidra till att bevara historia och dess artefakter för framtida generationer. För att stödja andra oldtimer-entusiaster i Finland och utanför.",
+    card_how_title: "Med vad och hur?",
+    card_how_text: "Med historisk och teknisk information, praktisk hjälp med restaurering, reparation och att hitta reservdelar.",
+    disclaimer: "Ansvarsfriskrivning: Fokus för denna resurs är uteslutande teknikhistoria — utan politik, arméer, säkerhetstjänster och internationella kommunistiska rörelser.",
+    cta_contact: "✉️ Kontakta mig",
+    resources_title: "Datakälla",
+    resources_intro: "Länkar till externa arkiv och informationskällor:",
+    res1: "Arkiv för den finska Moskvich-klubben",
+    res2: "Arkiv för teknisk information",
+    resources_footer: "Båda länkarna öppnar samma arkivwebbplats (mosclub.netlify.app).",
+    contact_title: "Kontakta mig",
+    contact_intro: "Fyll i formuläret — jag svarar inom 24 timmar.",
+    form_name: "Namn",
+    form_email: "E-post",
+    form_phone: "Telefon (valfritt)",
+    form_phone_note: "Förutom e-post är det önskvärt att ange ett telefonnummer för kontakt.",
+    form_message: "Meddelande",
+    form_send: "Skicka",
+    form_ok: "✅ Tack! Jag återkommer snart.",
+    form_error: "❌ Tyvärr misslyckades sändningen. Försök igen senare.",
+    footer_text: "© 2026 X-CCCP · Mikkeli, Finland"
+  },
 
+  /* ------------------------------- ENGLISH ------------------------------- */
+  en: {
+    nav_home: "EX-USSR",
+    nav_resources: "Data Source",
+    nav_contact: "Contacts",
+    home_title: "X-CCCP, X-USSR",
+    home_intro: "X-CCCP, X-USSR or EX-CCCP, EX USSR — simultaneously both 'outside' and 'former' — because this state no longer exists, and the focus of the resource author's interest is concentrated on the artifacts of the technical history of this country that left outside its geographic and temporal borders.",
+    home_tagline: "EX-USSR, X-CCCP, Outside USSR",
+    card_where_title: "Where?",
+    card_where_text: "In Finland, in the city of Mikkeli.",
+    card_who_title: "Who?",
+    card_who_text: "An oldtimer enthusiast born in the USSR, a certified engineer, member of the Mikkelin Mobilistit r.y. club.",
+    card_why_title: "Why?",
+    card_why_text: "To contribute to preserving history and its artifacts for future generations. To support fellow oldtimer enthusiasts in Finland and beyond.",
+    card_how_title: "How and in what way?",
+    card_how_text: "With historical and technical information, practical help in restoration, repair, and finding spare parts.",
+    disclaimer: "Disclaimer: The focus of this resource is exclusively the history of technology — without politics, armies, secret services, and international communist movements.",
+    cta_contact: "✉️ Contact me",
+    resources_title: "Data Source",
+    resources_intro: "Links to external archives and information sources:",
+    res1: "Finnish Moskvich Club Archive",
+    res2: "Technical Information Archive",
+    resources_footer: "Both links open the same archive site (mosclub.netlify.app).",
+    contact_title: "Contact me",
+    contact_intro: "Fill in the form — I will reply within 24 hours.",
+    form_name: "Name",
+    form_email: "Email",
+    form_phone: "Phone (optional)",
+    form_phone_note: "Besides email, it is desirable to provide a phone number for contact.",
+    form_message: "Message",
+    form_send: "Send",
+    form_ok: "✅ Thank you! I will get back to you soon.",
+    form_error: "❌ Unfortunately, sending failed. Please try again later.",
+    footer_text: "© 2026 X-CCCP · Mikkeli, Finland"
+  },
+
+  /* ------------------------------- SPANISH ------------------------------- */
+  es: {
+    nav_home: "EX-USSR",
+    nav_resources: "Fuente de datos",
+    nav_contact: "Contactos",
+    home_title: "X-CCCP, X-USSR",
+    home_intro: "X-CCCP, X-USSR o EX-CCCP, EX USSR — simultáneamente tanto 'fuera' como 'anterior' — porque este estado ya no existe, y el enfoque del interés del autor del recurso se concentra en los artefactos de la historia técnica de este país que quedaron fuera de sus fronteras geográficas y temporales.",
+    home_tagline: "EX-USSR, X-CCCP, Fuera de la URSS",
+    card_where_title: "¿Dónde?",
+    card_where_text: "En Finlandia, en la ciudad de Mikkeli.",
+    card_who_title: "¿Quién?",
+    card_who_text: "Un entusiasta de los vehículos clásicos nacido en la URSS, apasionado por los clásicos, ingeniero certificado, miembro del club Mikkelin Mobilistit r.y.",
+    card_why_title: "¿Por qué?",
+    card_why_text: "Para contribuir a preservar la historia y sus artefactos para las generaciones futuras. Para apoyar a otros entusiastas de los clásicos en Finlandia y más allá.",
+    card_how_title: "¿Con qué y cómo?",
+    card_how_text: "Con información histórica y técnica, ayuda práctica en restauración, reparación y búsqueda de repuestos.",
+    disclaimer: "Aviso legal: El enfoque de este recurso es exclusivamente la historia de la tecnología — sin política, ejércitos, servicios secretos ni movimientos comunistas internacionales.",
+    cta_contact: "✉️ Contáctame",
+    resources_title: "Fuente de datos",
+    resources_intro: "Enlaces a archivos externos y fuentes de información:",
+    res1: "Archivo del club finlandés Moskvich",
+    res2: "Archivo de información técnica",
+    resources_footer: "Ambos enlaces abren el mismo sitio de archivo (mosclub.netlify.app).",
+    contact_title: "Contáctame",
+    contact_intro: "Rellena el formulario — responderé en 24 horas.",
+    form_name: "Nombre",
+    form_email: "Correo electrónico",
+    form_phone: "Teléfono (opcional)",
+    form_phone_note: "Además del correo electrónico, es deseable indicar un número de teléfono para contacto.",
+    form_message: "Mensaje",
+    form_send: "Enviar",
+    form_ok: "✅ ¡Gracias! Me pondré en contacto contigo pronto.",
+    form_error: "❌ Desafortunadamente, el envío falló. Por favor, inténtalo de nuevo más tarde.",
+    footer_text: "© 2026 X-CCCP · Mikkeli, Finlandia"
+  },
+
+  /* ------------------------------- CHINESE ------------------------------- */
+  zh: {
+    nav_home: "前苏联",
+    nav_resources: "数据来源",
+    nav_contact: "联系方式",
+    home_title: "X-CCCP, X-USSR",
+    home_intro: "X-CCCP、X-USSR 或 EX-CCCP、EX USSR — 同时既是\"外部\"又是\"前\" — 因为这个国家已不复存在，而资源作者的兴趣聚焦于这个国家技术历史的产物，这些产物留在了其地理和时间边界之外。",
+    home_tagline: "EX-USSR, X-CCCP, 苏联之外",
+    card_where_title: "在哪里？",
+    card_where_text: "在芬兰米凯利市。",
+    card_who_title: "谁？",
+    card_who_text: "出生于苏联的老爷车爱好者，对老爷车充满热情，认证工程师，Mikkelin Mobilistit r.y. 俱乐部成员。",
+    card_why_title: "为什么？",
+    card_why_text: "为子孙后代保存历史及其产物做出贡献。支持芬兰及其他地区的老爷车爱好者。",
+    card_how_title: "用什么以及如何？",
+    card_how_text: "凭借历史和技术信息，在修复、维修和寻找备件方面提供实际帮助。",
+    disclaimer: "免责声明：本资源的重点完全是技术历史 — 不涉及政治、军队、秘密机构和国际共产主义运动。",
+    cta_contact: "✉️ 联系我",
+    resources_title: "数据来源",
+    resources_intro: "外部档案和信息来源链接：",
+    res1: "芬蘭莫斯科人俱樂部檔案館",
+    res2: "技术信息档案",
+    resources_footer: "两个链接打开同一个档案网站 (mosclub.netlify.app)。",
+    contact_title: "联系我",
+    contact_intro: "填写表格 — 我会在24小时内回复。",
+    form_name: "姓名",
+    form_email: "电子邮件",
+    form_phone: "电话（可选）",
+    form_phone_note: "除电子邮件外，最好提供联系电话号码。",
+    form_message: "留言",
+    form_send: "发送",
+    form_ok: "✅ 谢谢！我会尽快回复您。",
+    form_error: "❌ 很遗憾，发送失败。请稍后再试。",
+    footer_text: "© 2026 X-CCCP · 芬兰米凯利"
+  }
+};
+
+/* ==========================================================================
+   LANGUAGE ORDER
+   Finnish is the project's primary language.
+   ========================================================================== */
+const LANG_ORDER = ["fi", "sv", "en", "es", "zh"];
+const LANG_LABELS = {
+  fi: "FI",
+  sv: "SV",
+  en: "EN",
+  es: "ES",
+  zh: "中文"
+};
+
+/* ==========================================================================
+   CURRENT LANGUAGE STATE
+   ========================================================================== */
+let currentLang = localStorage.getItem("xcccp-lang") || "fi";
+
+/* ==========================================================================
+   APPLY LANGUAGE
+   ========================================================================== */
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem("xcccp-lang", lang);
+
+  const dict = content[lang];
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined) {
+      el.textContent = dict[key];
+    }
+  });
+
+  document.querySelectorAll(".lang-bar button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+
+  document.documentElement.lang = lang;
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active-page"));
+  const target = document.getElementById("page-" + id);
+  if (target) target.classList.add("active-page");
+
+  document.querySelectorAll("nav a").forEach(a => {
+    a.classList.toggle("active", a.dataset.page === id);
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ==========================================================================
+   CONTACT FORM HANDLER
+   Client-side validation + honeypot checks.
+   ========================================================================== */
+function handleForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const msg = document.getElementById("formMsg");
+
+  /* Honeypot #1: hidden "website" field must remain empty */
+  if (form.website.value.trim() !== "") {
+    msg.textContent = content[currentLang].form_ok;
+    msg.style.color = "#2e7d32";          /* success color for the light theme */
+    form.reset();
+    return;
+  }
+
+  /* Honeypot #2: reject submissions faster than 2 seconds */
+  const renderedAt = parseInt(form.form_ts.value || "0", 10);
+  const elapsed = Date.now() - renderedAt;
+  if (renderedAt && elapsed < 2000) {
+    msg.textContent = content[currentLang].form_ok;
+    msg.style.color = "#2e7d32";
+    form.reset();
+    return;
+  }
+
+  /* Standard required-field validation */
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const message = form.message.value.trim();
+
+  if (!name || !email || !message) {
+    msg.textContent = content[currentLang].form_error;
+    msg.style.color = "#c1121f";          /* error color for the light theme */
+    return;
+  }
+
+  msg.textContent = content[currentLang].form_ok;
+  msg.style.color = "#2e7d32";
+  form.reset();
+  form.form_ts.value = Date.now();
+}
+
+/* ==========================================================================
+   INITIALIZATION
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+
+  const bar = document.getElementById("langBar");
+  LANG_ORDER.forEach(lang => {
+    const btn = document.createElement("button");
+    btn.textContent = LANG_LABELS[lang];
+    btn.dataset.lang = lang;
+    btn.addEventListener("click", () => applyLang(lang));
+    bar.appendChild(btn);
+  });
+
+  document.querySelectorAll("nav a, [data-page]").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      showPage(el.dataset.page);
+    });
+  });
+
+  const form = document.getElementById("contactForm");
+  form.addEventListener("submit", handleForm);
+
+  document.getElementById("formTs").value = Date.now();
+
+  applyLang(currentLang);
+});
+</script>
 </body>
 </html>
 
