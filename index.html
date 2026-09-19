@@ -7,20 +7,19 @@
 <style>
 /* ==========================================================================
    ROOT VARIABLES
-   Layout, spacing and typography tokens are unchanged from the dark theme.
-   Only the color values have been switched to a light palette.
+   Light theme matching the modular project (cream bg, red accent).
    ========================================================================== */
 :root {
-  --bg: #f7f5f3;              /* Main page background (light) */
-  --surface: #ffffff;         /* Card / panel background */
-  --surface2: #f0edea;        /* Secondary surface (hover states, inputs) */
-  --border: #dddddd;          /* Default border color */
-  --text: #1e1e1e;            /* Primary text color */
-  --muted: #666666;           /* Muted / secondary text color */
-  --red: #c1121f;             /* Accent red */
-  --red-dim: #8a0e18;         /* Dimmed red for hover states */
-  --accent: #8a0e18;          /* Dark red used for taglines */
-  --radius: 10px;             /* Standard border radius */
+  --bg: #f7f5f3;
+  --surface: #ffffff;
+  --surface2: #f0edea;
+  --border: #dddddd;
+  --text: #1e1e1e;
+  --muted: #666666;
+  --red: #c1121f;
+  --red-dim: #8a0e18;
+  --accent: #8a0e18;
+  --radius: 10px;
 }
 
 /* ==========================================================================
@@ -34,7 +33,7 @@ body {
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
-  padding-top: 4px;           /* Space for the fixed red stripe at the top */
+  padding-top: 4px;
 }
 
 /* ==========================================================================
@@ -145,7 +144,7 @@ main {
 h2 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
 h3 { font-size: 1rem; margin-bottom: 0.4rem; }
 p  { margin-bottom: 0.9rem; }
-.lead { font-size: 1.05rem; color: #444444; }   /* was #ccc in dark theme */
+.lead { font-size: 1.05rem; color: #444444; }
 
 .tagline {
   font-size: 0.85rem;
@@ -160,7 +159,7 @@ p  { margin-bottom: 0.9rem; }
    ========================================================================== */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 1.5rem 0;
 }
@@ -175,8 +174,13 @@ p  { margin-bottom: 0.9rem; }
   border-color: var(--red-dim);
   transform: translateY(-2px);
 }
-.card p { font-size: 0.9rem; color: #444444; margin-bottom: 0; }  /* was #bbb */
+.card p { font-size: 0.9rem; color: #444444; margin-bottom: 0; }
 
+/* ==========================================================================
+   DISCLAIMER BLOCK
+   Contains a linkified word for FI / SV / EN only.
+   Spanish and Chinese versions use plain text with no placeholder.
+   ========================================================================== */
 .disclaimer {
   font-size: 0.8rem;
   color: var(--muted);
@@ -184,6 +188,17 @@ p  { margin-bottom: 0.9rem; }
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;
+}
+
+/* Interactive word inside the disclaimer (X-CCCP → Tjefferson) */
+.focus-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.focus-link:hover {
+  color: var(--red);
 }
 
 /* ==========================================================================
@@ -263,7 +278,9 @@ p  { margin-bottom: 0.9rem; }
 .form-msg { font-size: 0.9rem; margin-top: 0.75rem; }
 
 /* ==========================================================================
-   HONEYPOT FIELD
+   HONEYPOT FIELDS
+   - .hp-field: our client-side trap (off-screen, invisible to humans)
+   - .botcheck: Web3Forms server-side trap (hidden checkbox)
    ========================================================================== */
 .hp-field {
   position: absolute;
@@ -275,6 +292,7 @@ p  { margin-bottom: 0.9rem; }
   opacity: 0;
   pointer-events: none;
 }
+.botcheck { display: none !important; }
 
 /* ==========================================================================
    FOOTER
@@ -290,8 +308,12 @@ footer {
 }
 
 /* ==========================================================================
-   RESPONSIVE OVERRIDES (mobile)
+   RESPONSIVE OVERRIDES
    ========================================================================== */
+@media (max-width: 800px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 600px) {
   header { flex-direction: column; align-items: flex-start; }
   nav { gap: 0.85rem; }
@@ -349,10 +371,10 @@ footer {
     <h2 data-i18n="resources_title"></h2>
     <p data-i18n="resources_intro"></p>
     <div class="link-stack">
-      <a href="https://8132424-eng.github.io/mosclub/" class="external-link" target="_blank" rel="noopener">
+      <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
         <span data-i18n="res1"></span>
       </a>
-      <a href="https://8132424-eng.github.io/X/" class="external-link" target="_blank" rel="noopener">
+      <a href="https://mosclub.netlify.app" class="external-link" target="_blank" rel="noopener">
         <span data-i18n="res2"></span>
       </a>
     </div>
@@ -363,7 +385,23 @@ footer {
     <h2 data-i18n="contact_title"></h2>
     <p data-i18n="contact_intro"></p>
 
-    <form id="contactForm" class="contact-form" novalidate>
+    <!-- ==================================================================
+         CONTACT FORM — powered by Web3Forms
+         The access_key below is a public identifier; the actual sending
+         is performed by Web3Forms on their server.
+         ================================================================== -->
+    <form id="contactForm" class="contact-form"
+          action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+      <!-- Web3Forms access key -->
+      <input type="hidden" name="access_key" value="7c64064a-2385-493c-84e7-5c6e3aedcbdd">
+
+      <!-- Optional: subject line of the incoming email -->
+      <input type="hidden" name="subject" value="New message from X-CCCP website">
+
+      <!-- Optional: redirect URL after successful submission -->
+      <input type="hidden" name="redirect" value="false">
+
       <div class="form-row">
         <label data-i18n="form_name"></label>
         <input type="text" name="name" required autocomplete="name">
@@ -385,6 +423,18 @@ footer {
         <textarea name="message" rows="5" required></textarea>
       </div>
 
+      <!-- ==============================================================
+           WEB3FORMS SERVER-SIDE HONEYPOT
+           A hidden checkbox. Real users never see it, bots often tick it.
+           If checked, Web3Forms rejects the submission.
+           ============================================================== -->
+      <input type="checkbox" name="botcheck" class="botcheck"
+             tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <!-- ==============================================================
+           CLIENT-SIDE HONEYPOT (our own trap)
+           Hidden "website" field + timestamp check, handled by JS below.
+           ============================================================== -->
       <div class="hp-field" aria-hidden="true">
         <label for="hp_website">Website</label>
         <input type="text" id="hp_website" name="website" tabindex="-1" autocomplete="off">
@@ -406,6 +456,12 @@ footer {
 /* ==========================================================================
    TRANSLATION DICTIONARIES
    Primary language: Finnish (fi). Other translations are derived from EN.
+   The `disclaimer` string contains a placeholder for FI / SV / EN only:
+     {painopiste}  — Finnish
+     {focus}       — English
+     {Fokus}       — Swedish
+   Spanish and Chinese versions use plain words without placeholder —
+   they remain non-clickable.
    ========================================================================== */
 const content = {
 
@@ -425,11 +481,11 @@ const content = {
     card_why_text: "Tuodakseni panokseni historian ja sen artefaktien säilyttämiseen tuleville sukupolville. Tukeakseni kollegoita — oldtimer-harrastajia Suomessa ja sen ulkopuolella.",
     card_how_title: "Millä ja miten?",
     card_how_text: "Historiallisella ja teknisellä tiedolla, käytännön avulla restauroinnissa, korjauksessa ja varaosien etsinnässä.",
-    disclaimer: "Vastuuvapauslauseke: Tämän resurssin painopiste on yksinomaan tekniikan historia — ilman politiikkaa, armeijoita, erikoispoliiseja ja kansainvälisiä kommunistisia liikkeitä.",
+    disclaimer: "Vastuuvapauslauseke: Tämän resurssin {painopiste} on yksinomaan tekniikan historia — ilman politiikkaa, armeijoita, erikoispoliiseja ja kansainvälisiä kommunistisia liikkeitä.",
     cta_contact: "✉️ Ota yhteyttä",
     resources_title: "Tietolähde",
     resources_intro: "Linkkejä ulkoisiin arkistoihin ja tietolähteisiin:",
-    res1: "Suomen Moskvitsh kerhon arkisto",
+    res1: "Suomen Moskvish kerhon arkisto",
     res2: "Teknisen tiedon arkisto",
     resources_footer: "Molemmat linkit avaavat saman arkistosivuston (mosclub.netlify.app).",
     contact_title: "Ota yhteyttä",
@@ -461,11 +517,11 @@ const content = {
     card_why_text: "För att bidra till att bevara historia och dess artefakter för framtida generationer. För att stödja andra oldtimer-entusiaster i Finland och utanför.",
     card_how_title: "Med vad och hur?",
     card_how_text: "Med historisk och teknisk information, praktisk hjälp med restaurering, reparation och att hitta reservdelar.",
-    disclaimer: "Ansvarsfriskrivning: Fokus för denna resurs är uteslutande teknikhistoria — utan politik, arméer, säkerhetstjänster och internationella kommunistiska rörelser.",
+    disclaimer: "Ansvarsfriskrivning: {Fokus} för denna resurs är uteslutande teknikhistoria — utan politik, arméer, säkerhetstjänster och internationella kommunistiska rörelser.",
     cta_contact: "✉️ Kontakta mig",
     resources_title: "Datakälla",
     resources_intro: "Länkar till externa arkiv och informationskällor:",
-    res1: "Arkiv för den finska Moskvich-klubben",
+    res1: "Suomen Moskvish kerhon arkisto",
     res2: "Arkiv för teknisk information",
     resources_footer: "Båda länkarna öppnar samma arkivwebbplats (mosclub.netlify.app).",
     contact_title: "Kontakta mig",
@@ -492,16 +548,16 @@ const content = {
     card_where_title: "Where?",
     card_where_text: "In Finland, in the city of Mikkeli.",
     card_who_title: "Who?",
-    card_who_text: "An oldtimer enthusiast born in the USSR, a certified engineer, member of the Mikkelin Mobilistit r.y. club.",
+    card_who_text: "An oldtimer enthusiast born in the USSR, passionate about oldtimers, a certified engineer, member of the Mikkelin Mobilistit r.y. club.",
     card_why_title: "Why?",
     card_why_text: "To contribute to preserving history and its artifacts for future generations. To support fellow oldtimer enthusiasts in Finland and beyond.",
-    card_how_title: "How and in what way?",
+    card_how_title: "With what and how?",
     card_how_text: "With historical and technical information, practical help in restoration, repair, and finding spare parts.",
-    disclaimer: "Disclaimer: The focus of this resource is exclusively the history of technology — without politics, armies, secret services, and international communist movements.",
+    disclaimer: "Disclaimer: The {focus} of this resource is exclusively the history of technology — without politics, armies, secret services, and international communist movements.",
     cta_contact: "✉️ Contact me",
     resources_title: "Data Source",
     resources_intro: "Links to external archives and information sources:",
-    res1: "Finnish Moskvich Club Archive",
+    res1: "Suomen Moskvish kerhon arkisto",
     res2: "Technical Information Archive",
     resources_footer: "Both links open the same archive site (mosclub.netlify.app).",
     contact_title: "Contact me",
@@ -537,7 +593,7 @@ const content = {
     cta_contact: "✉️ Contáctame",
     resources_title: "Fuente de datos",
     resources_intro: "Enlaces a archivos externos y fuentes de información:",
-    res1: "Archivo del club finlandés Moskvich",
+    res1: "Suomen Moskvish kerhon arkisto",
     res2: "Archivo de información técnica",
     resources_footer: "Ambos enlaces abren el mismo sitio de archivo (mosclub.netlify.app).",
     contact_title: "Contáctame",
@@ -573,7 +629,7 @@ const content = {
     cta_contact: "✉️ 联系我",
     resources_title: "数据来源",
     resources_intro: "外部档案和信息来源链接：",
-    res1: "芬蘭莫斯科人俱樂部檔案館",
+    res1: "Suomen Moskvish kerhon arkisto",
     res2: "技术信息档案",
     resources_footer: "两个链接打开同一个档案网站 (mosclub.netlify.app)。",
     contact_title: "联系我",
@@ -591,8 +647,24 @@ const content = {
 };
 
 /* ==========================================================================
+   TJEFFERSON LINK
+   The interactive word inside the disclaimer points to this URL.
+   ========================================================================== */
+const TJEFFERSON_URL = "https://8132424-eng.github.io/tjefferson/";
+
+/* Replace the placeholder with an <a> element.
+   Supported placeholders: {painopiste}, {focus}, {Fokus}. */
+function linkifyFocus(text) {
+  if (typeof text !== "string") return text;
+  return text.replace(/\{(painopiste|focus|fokus)\}/i, function(match, word) {
+    return '<a href="' + TJEFFERSON_URL +
+           '" target="_blank" rel="noopener" class="focus-link">' +
+           word + '</a>';
+  });
+}
+
+/* ==========================================================================
    LANGUAGE ORDER
-   Finnish is the project's primary language.
    ========================================================================== */
 const LANG_ORDER = ["fi", "sv", "en", "es", "zh"];
 const LANG_LABELS = {
@@ -618,8 +690,13 @@ function applyLang(lang) {
   const dict = content[lang];
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.getAttribute("data-i18n");
-    if (dict[key] !== undefined) {
-      el.textContent = dict[key];
+    const value = dict[key];
+    if (value === undefined) return;
+
+    if (key === "disclaimer") {
+      el.innerHTML = linkifyFocus(value);
+    } else {
+      el.textContent = value;
     }
   });
 
@@ -646,10 +723,13 @@ function showPage(id) {
 }
 
 /* ==========================================================================
-   CONTACT FORM HANDLER
-   Client-side validation + honeypot checks.
+   CONTACT FORM — CLIENT-SIDE HONEYPOT + WEB3FORMS SUBMIT
+   ---------------------------------------------------------------------------
+   1. If the hidden "website" field is filled — silently drop the submission.
+   2. If the form is submitted faster than 2 seconds — silently drop it.
+   3. Otherwise: send the data to Web3Forms via fetch() and show a message.
    ========================================================================== */
-function handleForm(e) {
+async function handleForm(e) {
   e.preventDefault();
   const form = e.target;
   const msg = document.getElementById("formMsg");
@@ -657,7 +737,7 @@ function handleForm(e) {
   /* Honeypot #1: hidden "website" field must remain empty */
   if (form.website.value.trim() !== "") {
     msg.textContent = content[currentLang].form_ok;
-    msg.style.color = "#2e7d32";          /* success color for the light theme */
+    msg.style.color = "#2e7d32";
     form.reset();
     return;
   }
@@ -679,14 +759,32 @@ function handleForm(e) {
 
   if (!name || !email || !message) {
     msg.textContent = content[currentLang].form_error;
-    msg.style.color = "#c1121f";          /* error color for the light theme */
+    msg.style.color = "#c1121f";
     return;
   }
 
-  msg.textContent = content[currentLang].form_ok;
-  msg.style.color = "#2e7d32";
-  form.reset();
-  form.form_ts.value = Date.now();
+  /* Send the data to Web3Forms */
+  try {
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: formData
+    });
+    const result = await response.json();
+
+    if (result.success) {
+      msg.textContent = content[currentLang].form_ok;
+      msg.style.color = "#2e7d32";
+      form.reset();
+      form.form_ts.value = Date.now();
+    } else {
+      msg.textContent = content[currentLang].form_error;
+      msg.style.color = "#c1121f";
+    }
+  } catch (err) {
+    msg.textContent = content[currentLang].form_error;
+    msg.style.color = "#c1121f";
+  }
 }
 
 /* ==========================================================================
@@ -694,6 +792,7 @@ function handleForm(e) {
    ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* Build language buttons in the required order */
   const bar = document.getElementById("langBar");
   LANG_ORDER.forEach(lang => {
     const btn = document.createElement("button");
@@ -703,6 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
     bar.appendChild(btn);
   });
 
+  /* Wire up navigation and in-page CTA buttons */
   document.querySelectorAll("nav a, [data-page]").forEach(el => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -710,11 +810,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* Wire up the contact form */
   const form = document.getElementById("contactForm");
   form.addEventListener("submit", handleForm);
 
+  /* Record the initial render timestamp for the honeypot check */
   document.getElementById("formTs").value = Date.now();
 
+  /* Apply initial language */
   applyLang(currentLang);
 });
 </script>
